@@ -100,9 +100,37 @@
               </span>
             </a>
           </li>
+          <li class="twitter animate__animated animate__bounceIn" style="animation-delay: 1.2s;">
+            <button id="saveContactBtn">
+              <i class="fab fa-twitter"></i>
+              <span>
+                <h3>My Contacts</h3>
+                <p>Click me to add my contacts to your phone.</p>
+              </span>
+            </button>
+          </li>
         </ul>
       </div>
     </div>
-    
+    <script>
+      document.getElementById("saveContactBtn").addEventListener("click", async () => {
+      try {
+        if ('contacts' in navigator && 'ContactsManager' in window) {
+          await navigator.contacts.save({
+            name: "John Doe",
+            tel: "+123456789",
+            email: "john.doe@example.com"
+          });
+          alert("Contact saved successfully!");
+        } else {
+          alert("This feature is not supported on your device.");
+        }
+      } catch (error) {
+        console.error("Error saving contact:", error);
+        alert("Failed to save contact.");
+      }
+    });
+
+    </script>
   </body>
 </html>
