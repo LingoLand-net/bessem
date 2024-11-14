@@ -138,8 +138,8 @@ body {
 }
 
 #saveContactBtn:hover {
-  background-color: #3570bd; /* Darker shade on hover */
-  transform: translateY(-2px); /* Slight lift on hover */
+  background-color: #3570bd;
+  transform: translateY(-2px);
 }
 
 /* Icon styling */
@@ -161,7 +161,6 @@ body {
   opacity: 0.8;
 }
 
-/* Animation delay for the list item */
 .social-links ul li.button {
   animation-delay: 1.2s;
 }
@@ -170,7 +169,6 @@ body {
   width: 400px !important;
   color: white;
 }
-
 
 .website {
   background-color: #636363;
