@@ -15,17 +15,13 @@
     <meta property="og:image" content="https://pbs.twimg.com/profile_images/1454420658444713990/hemTFy18_400x400.jpg" />
     <meta property="og:url" content="https://Bessem.lingo-land.net" />
     <meta property="og:type" content="website" />
-
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- Animate.css CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- preload Img -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="styles.css" />
     <link rel="preload" as="image" href="https://pbs.twimg.com/profile_images/1454420658444713990/hemTFy18_400x400.jpg" />
   </head>
   <body>
@@ -41,11 +37,9 @@
           When ambition ends, happiness begins...
         </p>
       </div>
-    
-      <!--=============== SOCIAL MEDIA LINKS ===============-->
+
       <div class="social-links animate__animated animate__fadeInUp">
         <ul>
-          <!-- Social media links with individual animations -->
           <li class="website animate__animated animate__bounceIn" style="animation-delay: 0.2s;">
             <a href="https://lingo-land.net/" target="_blank">
               <i class="fas fa-globe"></i>
@@ -55,7 +49,7 @@
               </span>
             </a>
           </li>
-          <li class="github animate__animated animate__bounceIn" style="animation-delay: 0.4s;">
+          <li class="animate__animated animate__bounceIn" style="animation-delay: 0.4s;">
             <a href="https://www.youtube.com/@LingoLandCoursebooks/search?query=LingoLand%206th%20Grade%20%7C%20Grammar%20Explainers" target="_blank">
               <i class="fab fa-youtube"></i>
               <span>
@@ -100,9 +94,9 @@
               </span>
             </a>
           </li>
-          <li class="twitter animate__animated animate__bounceIn" style="animation-delay: 1.2s;">
-            <button id="saveContactBtn">
-              <i class="fab fa-twitter"></i>
+          <li class="button animate__animated animate__bounceIn" style="animation-delay: 1.4s;">
+            <button id="saveContactBtn" class="btn btn-primary">
+              <i class="fas fa-address-book"></i> <!-- Use "fas fa-address-book" for a contact icon -->
               <span>
                 <h3>My Contacts</h3>
                 <p>Click me to add my contacts to your phone.</p>
@@ -114,23 +108,57 @@
     </div>
     <script>
       document.getElementById("saveContactBtn").addEventListener("click", async () => {
-      try {
-        if ('contacts' in navigator && 'ContactsManager' in window) {
-          await navigator.contacts.save({
-            name: "John Doe",
-            tel: "+123456789",
-            email: "john.doe@example.com"
-          });
-          alert("Contact saved successfully!");
-        } else {
-          alert("This feature is not supported on your device.");
+        try {
+          if ('contacts' in navigator && 'ContactsManager' in window) {
+            await navigator.contacts.save({
+              name: "John Doe",
+              tel: "+123456789",
+              email: "john.doe@example.com"
+            });
+            alert("Contact saved successfully!");
+          } else {
+            // If the Contacts API is not supported, show the info in SweetAlert
+            showContactInfo();
+          }
+        } catch (error) {
+          console.error("Error saving contact:", error);
+          showContactInfo();
         }
-      } catch (error) {
-        console.error("Error saving contact:", error);
-        alert("Failed to save contact.");
+      });
+      function showContactInfo() {
+        Swal.fire({
+          html: `
+          <h1 style="argin-bottom: 15px;">Contact Information</h1><hr><br>
+            <div style="text-align: center;">
+              <img src="https://pbs.twimg.com/profile_images/1454420658444713990/hemTFy18_400x400.jpg" 
+                  alt="Profile Picture" 
+                  style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px;">
+              <div style="font-size: 1.1rem; color: #ffffff">
+                <div style="margin-bottom: 8px;">
+                  <strong style="color: #ffffffa0;">Name:</strong> 
+                  <span style="color: #ffffffdd; font-weight: 500;">Bassem Mbarek</span>
+                </div>
+                <div style="margin-bottom: 8px;">
+                  <strong style="color: #ffffffa0;">Phone:</strong> 
+                  <span style="color: #ffffffdd; font-weight: 500;">95883871</span>
+                </div>
+                <div>
+                  <strong style="color: #ffffffa0;">Email:</strong> 
+                  <a href="mailto:bessemmbarek@gmail.com" style="color:#4977AA; font-weight: 500; text-decoration: none;">
+                    bessemmbarek@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          `,
+          confirmButtonText: "Close",
+          confirmButtonColor: "#4a90e2",
+          background: "#000",
+          customClass: {
+            popup: "swal-wide"
+          }
+        });
       }
-    });
-
     </script>
   </body>
 </html>
