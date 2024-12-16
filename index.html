@@ -126,7 +126,7 @@
       function showContactInfo() {
         Swal.fire({
           html: `
-          <h1 style="argin-bottom: 15px;">Contact Information</h1><hr><br>
+            <h1 style="margin-bottom: 15px;">Contact Information</h1><hr><br>
             <div style="text-align: center;">
               <img src="https://pbs.twimg.com/profile_images/1454420658444713990/hemTFy18_400x400.jpg" 
                   alt="Profile Picture" 
@@ -138,7 +138,7 @@
                 </div>
                 <div style="margin-bottom: 8px;">
                   <strong style="color: #ffffffa0;">Phone:</strong> 
-                  <a href="tel:+21695883871" style="color:white; font-weight: 500; text-decoration: none; a::after{color:blue}">
+                  <a href="tel:+21695883871" style="color:white; font-weight: 500; text-decoration: none;">
                     95883871
                   </a>
                 </div>
@@ -154,10 +154,18 @@
           confirmButtonText: "Close",
           confirmButtonColor: "#4a90e2",
           background: "#000",
+          showCancelButton: true,
+          cancelButtonText: "Book a Meeting",
+          cancelButtonColor: "#34c759",
           customClass: {
             popup: "swal-wide"
           }
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.cancel) {
+            window.open("https://cal.com/BessemMbarek", "_blank");
+          }
         });
+
       }
     </script>
   </body>
